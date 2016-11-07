@@ -6,7 +6,7 @@ public class UnrealTech : ModuleRules
 {
 	public UnrealTech(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore","UMG","Slate" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
