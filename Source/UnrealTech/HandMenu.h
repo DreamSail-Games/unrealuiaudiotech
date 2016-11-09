@@ -14,13 +14,13 @@ UCLASS()
 class UNREALTECH_API UHandMenu : public UUserWidget
 {
 	GENERATED_BODY()
-
+		
 
 	
 public:
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawnables")
-	UBlueprint* MusicPlayer;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawnables")
+		TSubclassOf<AMusicPlayerContainer> MusicPlayerBP;
 	UFUNCTION(BlueprintCallable, Category = "HandMenu")
 	void CreatePlayer(UPARAM(ref) AActor* player);
 
