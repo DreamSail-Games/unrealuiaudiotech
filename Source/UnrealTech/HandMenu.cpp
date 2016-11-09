@@ -9,7 +9,7 @@ void UHandMenu::CreatePlayer(AActor* player)
 
 	UE_LOG(LogTemp, Warning, TEXT("Trying to create a player"));
 	FActorSpawnParameters SpawnParams;
-	FVector location = player->GetActorLocation();
+	FVector location = player->GetTransform().GetLocation();
 	FRotator rotation = player->GetActorRotation();
-	AMusicPlayerContainer* myRef = GetWorld()->SpawnActor<AMusicPlayerContainer>(MusicPlayerBP, location,rotation, SpawnParams);
+	AMusicPlayerContainer* myRef = (AMusicPlayerContainer*)GetWorld()->SpawnActor<AMusicPlayerContainer>(MusicPlayerBP, location,rotation, SpawnParams);
 }
