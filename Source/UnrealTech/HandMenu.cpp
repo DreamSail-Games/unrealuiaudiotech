@@ -4,12 +4,12 @@
 #include "HandMenu.h"
 
 
-void UHandMenu::CreatePlayer(AActor* player)
+void UHandMenu::CreatePlayer(USceneComponent* handComponent)
 {
 
 	UE_LOG(LogTemp, Warning, TEXT("Trying to create a player"));
 	FActorSpawnParameters SpawnParams;
-	FVector location = player->GetTransform().GetLocation();
-	FRotator rotation = player->GetActorRotation();
+	FVector location = handComponent->GetComponentTransform().GetLocation();
+	FRotator rotation = handComponent->GetComponentTransform().Rotator();
 	AMusicPlayerContainer* myRef = (AMusicPlayerContainer*)GetWorld()->SpawnActor<AMusicPlayerContainer>(MusicPlayerBP, location,rotation, SpawnParams);
 }

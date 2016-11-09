@@ -22,7 +22,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawnables")
 		TSubclassOf<AActor> MusicPlayerBP;
 	UFUNCTION(BlueprintCallable, Category = "HandMenu")
-	void CreatePlayer(UPARAM(ref) AActor* player);
+	void CreatePlayer(UPARAM(ref) USceneComponent* player);
 
 	
 };
