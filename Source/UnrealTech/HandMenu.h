@@ -20,7 +20,7 @@ class UNREALTECH_API UHandMenu : public UUserWidget
 public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawnables")
-		TSubclassOf<AActor> MusicPlayerBP;
+	TSubclassOf<AActor> MusicPlayerBP;
 	UFUNCTION(BlueprintCallable, Category = "HandMenu")
 	void CreatePlayer(UPARAM(ref) USceneComponent* player);
 
