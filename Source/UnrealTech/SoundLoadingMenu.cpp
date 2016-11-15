@@ -45,6 +45,9 @@ void USoundLoadingMenu::GenerateLoadedSongList(UPanelWidget* parentTransform)
 		WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WidgetTemplate);
 		parentTransform->AddChild(WidgetInstance);
 		USong* thisSong = Cast<USong>(WidgetInstance);
+		if (thisSong)
+		{
+		}
 		thisSong->loadedSong = loadedSounds[i];
 	}
 }
