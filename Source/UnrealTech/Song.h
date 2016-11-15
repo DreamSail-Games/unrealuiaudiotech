@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Blueprint/UserWidget.h"
+#include "SongContainer.h"
 #include "Song.generated.h"
 
 /**
@@ -15,6 +16,10 @@ class UNREALTECH_API USong : public UUserWidget
 public:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USoundWave* loadedSong;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<ASongContainer> loadedSongContainer;
+		UFUNCTION(BlueprintCallable, Category = "Song")
+		void AttachSongToHand(USceneComponent* attachPoint);
 	
 	
 };

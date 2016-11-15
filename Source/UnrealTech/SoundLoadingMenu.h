@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Blueprint/UserWidget.h"
+#include "Song.h"
 #include "SoundLoadingMenu.generated.h"
 
 /**
@@ -15,7 +16,14 @@ class UNREALTECH_API USoundLoadingMenu : public UUserWidget
 	
 public:
 	// Needs to be called by another blueprint or class to initalize
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<UUserWidget> WidgetTemplate;
+
+	UPROPERTY()
+		UUserWidget* WidgetInstance;
+
 	 void BeginPlay();
+	 UFUNCTION(BlueprintCallable, Category = "Song")
 	 void GenerateLoadedSongList(UPanelWidget* parentTransform);
 	USoundWave* GetSoundWaveFromFile(const FString& filePath)
 	{

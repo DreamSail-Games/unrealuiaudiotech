@@ -15,22 +15,6 @@ AMotionControllerPawn::AMotionControllerPawn()
 // Called when the game starts or when spawned
 void AMotionControllerPawn::BeginPlay()
 {
-	TArray<FString> foundFiles;
-	FString songFolderPath = FPaths::GameUserDir() + "StoredSongs";
-	UE_LOG(LogTemp, Warning, TEXT("THE NUMBER OF FILES IS %s"), *songFolderPath);
-	const TCHAR* characterArray = *songFolderPath;
-	const TCHAR* fileExtension = TEXT(".wav");
-	IFileManager::Get().FindFiles(foundFiles, characterArray,fileExtension);
-	int32 path;
-	path = foundFiles.Num();
-	UE_LOG(LogTemp, Warning, TEXT("THE NUMBER OF FILES IS %d"), path);
-	UE_LOG(LogTemp, Warning, TEXT(" %s"), *foundFiles[0]);
-
-	for (int i = 0; i < foundFiles.Num(); i++)
-	{
-		loadedSounds.Add(GetSoundWaveFromFile(FPaths::GameUserDir() + "StoredSongs/" + foundFiles[i]));
-	}
-
 	Super::BeginPlay();
 }
 

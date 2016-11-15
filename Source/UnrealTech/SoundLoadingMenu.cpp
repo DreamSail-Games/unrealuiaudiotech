@@ -40,5 +40,11 @@ void USoundLoadingMenu::GenerateLoadedSongList(UPanelWidget* parentTransform)
 		loadedSounds.Add(GetSoundWaveFromFile(FPaths::GameUserDir() + "StoredSongs/" + foundFiles[i]));
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Insert Text"));
+	for (int i = 0; i < loadedSounds.Num(); i++)
+	{
+		WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WidgetTemplate);
+		parentTransform->AddChild(WidgetInstance);
+		USong* thisSong = Cast<USong>(WidgetInstance);
+		thisSong->loadedSong = loadedSounds[i];
+	}
 }
