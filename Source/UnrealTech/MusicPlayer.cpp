@@ -6,3 +6,7 @@
 
 
 
+void GenerateSongSlots(UPanelWidget* parentTransform)
+{
+	//parentTransform->add
+}

@@ -16,7 +16,7 @@ class UNREALTECH_API USoundLoadingMenu : public UUserWidget
 public:
 	// Needs to be called by another blueprint or class to initalize
 	 void BeginPlay();
-
+	 void GenerateLoadedSongList(UPanelWidget* parentTransform);
 	USoundWave* GetSoundWaveFromFile(const FString& filePath)
 	{
 		USoundWave* sw = NewObject<USoundWave>(USoundWave::StaticClass());

@@ -14,6 +14,9 @@ class UNREALTECH_API UMusicPlayer : public UUserWidget
 	GENERATED_BODY()
 	
 	
-	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPanelWidget* parentTransform;
+	void GenerateSongSlots(UPanelWidget* parentTransform);
 	
 };

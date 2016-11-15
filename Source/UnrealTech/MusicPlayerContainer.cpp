@@ -15,15 +15,7 @@ AMusicPlayerContainer::AMusicPlayerContainer()
 // Called when the game starts or when spawned
 void AMusicPlayerContainer::BeginPlay()
 {
-	Super::BeginPlay();
-	TArray<FString> foundFiles;
-	FString songFolderPath = FPaths::GameUserDir();
-	const TCHAR* characterArray = *songFolderPath;
 
-	IFileManager::Get().FindFiles(foundFiles, characterArray);
-	int32 path;
-	path = foundFiles.Num();
-	UE_LOG(LogTemp, Warning, TEXT("THE FILE PATH IS %d"), path);
 
 
 	
