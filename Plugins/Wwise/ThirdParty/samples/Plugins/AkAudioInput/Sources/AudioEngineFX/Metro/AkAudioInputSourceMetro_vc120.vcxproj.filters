@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{C4E18DFE-9032-7247-97B9-615217AF74DE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK">
+      <UniqueIdentifier>{E1BEA6A8-1D59-1948-916A-ABE9E7078B1B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin">
+      <UniqueIdentifier>{FB2A06CC-8751-C44B-8F3B-9D03CEF30ED3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin\PluginServices">
+      <UniqueIdentifier>{9F8FCC41-8D2A-F542-A5DC-7B7D1FCA99D8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AkFXSrcAudioInput.h" />
+    <ClInclude Include="..\AkFXSrcAudioInputParams.h" />
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\AkAudioInputSourceFactory.h">
+      <Filter>include\AK\Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkValueRamp.h">
+      <Filter>include\AK\Plugin\PluginServices</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AkFXSrcAudioInput.cpp" />
+    <ClCompile Include="..\AkFXSrcAudioInputParams.cpp" />
+  </ItemGroup>
+</Project>

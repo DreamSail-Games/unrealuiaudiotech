@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{21E9503E-0524-8040-AE79-897D1A329051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK">
+      <UniqueIdentifier>{7E07BCE9-D8A6-B345-AB3E-DBBC016EE013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin">
+      <UniqueIdentifier>{E8631AB9-A60C-444D-94D9-8F827FF4EE8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin\PluginServices">
+      <UniqueIdentifier>{5A1F2CF3-3B70-5745-8E8F-E8B9E395D5CB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AkDelayFX.h" />
+    <ClInclude Include="..\AkDelayFXDSP.h" />
+    <ClInclude Include="..\AkDelayFXParams.h" />
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\AkDelayFXFactory.h">
+      <Filter>include\AK\Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkFXTailHandler.h">
+      <Filter>include\AK\Plugin\PluginServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkVectorValueRamp.h">
+      <Filter>include\AK\Plugin\PluginServices</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AkDelayFX.cpp" />
+    <ClCompile Include="..\AkDelayFXDSP.cpp" />
+    <ClCompile Include="..\AkDelayFXParams.cpp" />
+  </ItemGroup>
+</Project>

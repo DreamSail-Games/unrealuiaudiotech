@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{6229FD79-09B4-DD48-BFB0-14CC569B032C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK">
+      <UniqueIdentifier>{B6F1EC30-F876-6448-BC01-4CF794C75555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin">
+      <UniqueIdentifier>{96E2A327-9AC6-1B43-A215-4CEA56B8B39A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\DSP">
+      <UniqueIdentifier>{7A494C8A-9DE7-654E-BADB-FE40C129984D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\AK\Plugin\PluginServices">
+      <UniqueIdentifier>{E03CDDD6-250D-424D-9A00-28C54DD40AC4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DSP">
+      <UniqueIdentifier>{C0057095-2B68-B247-B693-788DB2BFD453}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AkFXSrcSine.h" />
+    <ClInclude Include="..\AkFXSrcSineParams.h" />
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\AkSineSourceFactory.h">
+      <Filter>include\AK\Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\DSP\AkApplyGain.h">
+      <Filter>include\AK\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkFXDurationHandler.h">
+      <Filter>include\AK\Plugin\PluginServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkFXParameterChangeHandler.h">
+      <Filter>include\AK\Plugin\PluginServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\DSP\AkSineOsc.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AkFXSrcSine.cpp" />
+    <ClCompile Include="..\AkFXSrcSineParams.cpp" />
+    <ClCompile Include="..\..\..\..\..\DSP\AkSineOsc.cpp">
+      <Filter>DSP</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
