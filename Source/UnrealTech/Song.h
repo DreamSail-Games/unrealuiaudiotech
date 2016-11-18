@@ -19,7 +19,7 @@ public:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSubclassOf<ASongContainer> loadedSongContainer;
 		UFUNCTION(BlueprintCallable, Category = "Song")
-		void AttachSongToHand(USceneComponent* attachPoint);
+			AActor* AttachSongToHand(USceneComponent* attachPoint);
 	
 	
 };

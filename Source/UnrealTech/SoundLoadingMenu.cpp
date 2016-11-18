@@ -49,7 +49,6 @@ void USoundLoadingMenu::GenerateLoadedSongList(UPanelWidget* parentTransform)
 		{
 			const TCHAR* name = *foundFiles[i];
 			thisSong->loadedSong = loadedSounds[i];
-			thisSong->Rename(name);
-		}
+			thisSong->Rename(name);		}
 	}
 }
