@@ -15,7 +15,6 @@ class UNREALTECH_API USoundLoadingMenu : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-	// Needs to be called by another blueprint or class to initalize
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSubclassOf<UUserWidget> WidgetTemplate;
 
