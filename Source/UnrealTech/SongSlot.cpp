@@ -19,5 +19,6 @@ void USongSlot::GenerateSong(UPanelWidget* parentTransform,USong* loadedSong)
 
 void USongSlot::RemoveSong(UPanelWidget* parentTransform)
 {
+
 	parentTransform->ClearChildren();
 }

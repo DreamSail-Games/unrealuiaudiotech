@@ -25,4 +25,5 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Song")
 		void RemoveSong(UPanelWidget* parentTransform);
+
 };
