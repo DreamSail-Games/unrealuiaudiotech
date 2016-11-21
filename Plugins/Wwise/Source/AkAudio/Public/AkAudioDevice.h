@@ -691,6 +691,8 @@ public:
 		return MaxAuxBus;
 	}
 
+	static void SetEngineExiting(bool isExiting) { m_EngineExiting = isExiting; }
+
 #if WITH_EDITOR
 	void SetMaxAuxBus(uint8 ValToSet) 
 	{
@@ -739,6 +741,8 @@ private:
 	uint8 MaxAuxBus;
 
 	FAkBankManager * AkBankManager;
+
+	static bool m_EngineExiting;
 
 #ifdef AK_SOUNDFRAME
 	class AK::SoundFrame::ISoundFrame * m_pSoundFrame;

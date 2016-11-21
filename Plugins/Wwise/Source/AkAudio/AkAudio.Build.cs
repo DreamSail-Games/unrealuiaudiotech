@@ -67,9 +67,6 @@ public class AkAudio : ModuleRules
             }
         );
 
-        // Uncomment this line to use the UE4 I/O system
-        Definitions.Add("AK_USE_UNREAL_IO");
-
         // These definitions can be set as platform-specific.
         Definitions.Add("AK_UNREAL_MAX_CONCURRENT_IO=8");
         Definitions.Add("AK_UNREAL_IO_GRANULARITY=32768");

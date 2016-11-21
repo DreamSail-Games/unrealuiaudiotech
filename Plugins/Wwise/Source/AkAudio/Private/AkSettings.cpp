@@ -10,8 +10,8 @@ UAkSettings::UAkSettings(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, MaxSimultaneousReverbVolumes(4)
 {
-	TCHAR WwiseDir[MAX_PATH];
-	FPlatformMisc::GetEnvironmentVariable(TEXT("WWISEROOT"), WwiseDir, MAX_PATH);
+	TCHAR WwiseDir[AK_MAX_PATH];
+	FPlatformMisc::GetEnvironmentVariable(TEXT("WWISEROOT"), WwiseDir, AK_MAX_PATH);
 
 	WwiseWindowsInstallationPath.Path = FString(WwiseDir);
     bRequestRefresh = false;

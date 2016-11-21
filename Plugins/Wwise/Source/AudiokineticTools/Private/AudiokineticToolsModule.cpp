@@ -231,6 +231,8 @@ class FAudiokineticToolsModule : public IAudiokineticTools
 
 		FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>(TEXT("AssetRegistry"));
 		VerifyAnimNotifiesHandle = AssetRegistryModule.Get().OnFilesLoaded().AddRaw(this, &FAudiokineticToolsModule::VerifyAnimNotifies);
+
+		FEditorDelegates::EndPIE.AddRaw(this, &FAudiokineticToolsModule::OnEndPIE);
 	}
 
 	virtual void ShutdownModule() override
@@ -264,6 +266,8 @@ class FAudiokineticToolsModule : public IAudiokineticTools
 		}
 
 		FGlobalTabmanager::Get()->UnregisterTabSpawner("Wwise Picker");
+
+		FEditorDelegates::EndPIE.RemoveAll(this);
 	}
 
 	/**
@@ -290,6 +294,11 @@ private:
 				GetMutableDefault<UAkSettings>()
 				);
 		}
+	}
+
+	void OnEndPIE(const bool bIsSimulating)
+	{
+		FAkAudioDevice::Get()->StopAllSounds(true);
 	}
 
 	/** Asset type actions for Audiokinetic assets.  Cached here so that we can unregister it during shutdown. */

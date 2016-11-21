@@ -74,15 +74,11 @@ DEFINE_LOG_CATEGORY(LogAkAudio);
 	Statics and Globals
 ------------------------------------------------------------------------------------*/
 
-#ifdef AK_USE_UNREAL_IO
-	CAkUnrealIOHookDeferred g_lowLevelIO;
-#else
-	// Then, we're using the default CAkDefaultIOHookBlocking implementation that's part
-	// of the SDK's sample code
-	CAkDefaultIOHookDeferred g_lowLevelIO;
-#endif
+CAkUnrealIOHookDeferred g_lowLevelIO;
 
 bool FAkAudioDevice::m_bSoundEngineInitialized = false;
+bool FAkAudioDevice::m_EngineExiting = false;
+
 
 /*------------------------------------------------------------------------------------
 	Defines
@@ -515,35 +511,28 @@ static void AkAudioDeviceBankLoadCallback(
 	void *			in_pCookie
 )
 {
-	FAkAudioDevice * akAudioDevice = FAkAudioDevice::Get();
 	AkBankCallbackFunc cbFunc = NULL;
-	if( akAudioDevice )
+	void* pUserCookie = NULL;
+	if( in_pCookie )
 	{
-		FAkBankManager * BankManager = akAudioDevice->GetAkBankManager();
-		if( BankManager != NULL )
+		FAkBankManager::AkBankCallbackInfo* BankCbInfo = (FAkBankManager::AkBankCallbackInfo*)in_pCookie;
+		FAkBankManager * BankManager = BankCbInfo->pBankManager;
+		cbFunc = BankCbInfo->CallbackFunc;
+		pUserCookie = BankCbInfo->pUserCookie;
+		if( BankManager != NULL && in_eLoadResult == AK_Success)
 		{
 			FScopeLock Lock(&BankManager->m_BankManagerCriticalSection);
-
-			FAkBankManager::AkBankCallbackInfo * cbInfo = BankManager->GetBankLoadCallbackInfo(in_pCookie);
-			if( cbInfo != NULL )
-			{
-				cbFunc = cbInfo->CallbackFunc;
-			}
-
-			if( in_eLoadResult == AK_Success )
-			{
-				// Load worked; put the bank in the list.
-				BankManager->AddLoadedBank(cbInfo->pBank);
-			}
-
-			BankManager->RemoveBankLoadCallbackInfo(in_pCookie);
+			// Load worked; put the bank in the list.
+			BankManager->AddLoadedBank(BankCbInfo->pBank);
 		}
+
+		delete BankCbInfo;
 	}
 
 	if( cbFunc != NULL )
 	{
 		// Call the user's callback function
-		cbFunc(in_bankID, in_pInMemoryBankPtr, in_eLoadResult, in_memPoolId, in_pCookie);
+		cbFunc(in_bankID, in_pInMemoryBankPtr, in_eLoadResult, in_memPoolId, pUserCookie);
 	}
 }
 
@@ -576,20 +565,10 @@ AKRESULT FAkAudioDevice::LoadBank(
 
 		if( AkBankManager != NULL )
 		{
-			FAkBankManager::AkBankCallbackInfo cbInfo(in_pfnBankCallback, in_Bank);
-
-			// We need a unique cookie for the map. If none, use the bank as cookie
-			if( in_pCookie == NULL )
-			{
-				in_pCookie = in_Bank;
-			}
+			FAkBankManager::AkBankCallbackInfo* cbInfo = new FAkBankManager::AkBankCallbackInfo(in_pfnBankCallback, in_Bank, in_pCookie, AkBankManager);
 
 			// Need to hijack the callback, so we can add the bank to the loaded banks list when successful.
-			AkBankManager->m_BankManagerCriticalSection.Lock();
-			AkBankManager->AddBankLoadCallbackInfo(in_pCookie, cbInfo);
-			AkBankManager->m_BankManagerCriticalSection.Unlock();
-
-			return AK::SoundEngine::LoadBank( szString, AkAudioDeviceBankLoadCallback, in_pCookie, in_memPoolId, out_bankID );
+			return AK::SoundEngine::LoadBank( szString, AkAudioDeviceBankLoadCallback, cbInfo, in_memPoolId, out_bankID );
 		}
 		else
 		{
@@ -653,34 +632,28 @@ static void AkAudioDeviceBankUnloadCallback(
 	void *			in_pCookie
 )
 {
-	FAkAudioDevice * akAudioDevice = FAkAudioDevice::Get();
 	AkBankCallbackFunc cbFunc = NULL;
-	if( akAudioDevice )
+	void* pUserCookie = NULL;
+	if(in_pCookie)
 	{
-		FAkBankManager * BankManager = akAudioDevice->GetAkBankManager();
-		if( BankManager )
+		FAkBankManager::AkBankCallbackInfo* BankCbInfo = (FAkBankManager::AkBankCallbackInfo*)in_pCookie;
+		FAkBankManager * BankManager = BankCbInfo->pBankManager;
+		cbFunc = BankCbInfo->CallbackFunc;
+		pUserCookie = BankCbInfo->pUserCookie;
+		if( BankManager && in_eLoadResult == AK_Success )
 		{
 			FScopeLock Lock(&BankManager->m_BankManagerCriticalSection);
-			FAkBankManager::AkBankCallbackInfo * cbInfo = BankManager->GetBankUnloadCallbackInfo(in_pCookie);
-			if( cbInfo != NULL )
-			{
-				cbFunc = cbInfo->CallbackFunc;
-			}
-
-			if( in_eLoadResult == AK_Success )
-			{
-				// Load worked; put the bank in the list.
-				BankManager->RemoveLoadedBank(cbInfo->pBank);
-			}
-
-			BankManager->RemoveBankUnloadCallbackInfo(in_pCookie);
+			// Load worked; put the bank in the list.
+			BankManager->RemoveLoadedBank(BankCbInfo->pBank);
 		}
+
+		delete BankCbInfo;
 	}
 
 	if( cbFunc != NULL )
 	{
 		// Call the user's callback function
-		cbFunc(in_bankID, in_pInMemoryBankPtr, in_eLoadResult, in_memPoolId, in_pCookie);
+		cbFunc(in_bankID, in_pInMemoryBankPtr, in_eLoadResult, in_memPoolId, pUserCookie);
 	}
 	
 }
@@ -709,20 +682,9 @@ AKRESULT FAkAudioDevice::UnloadBank(
 #endif
 		if( AkBankManager != NULL )
 		{
-			FAkBankManager::AkBankCallbackInfo cbInfo(in_pfnBankCallback, in_Bank);
+			FAkBankManager::AkBankCallbackInfo* cbInfo = new FAkBankManager::AkBankCallbackInfo(in_pfnBankCallback, in_Bank, in_pCookie, AkBankManager);
 
-			// We need a unique cookie for the map. If none, use the bank as cookie
-			if( in_pCookie == NULL )
-			{
-				in_pCookie = in_Bank;
-			}
-
-			// Need to hijack the callback, so we can add the bank to the loaded banks list when successful.
-			AkBankManager->m_BankManagerCriticalSection.Lock();
-			AkBankManager->AddBankUnloadCallbackInfo(in_pCookie, cbInfo);
-			AkBankManager->m_BankManagerCriticalSection.Unlock();
-
-			return AK::SoundEngine::UnloadBank(szString, NULL, AkAudioDeviceBankUnloadCallback, in_pCookie);
+			return AK::SoundEngine::UnloadBank(szString, NULL, AkAudioDeviceBankUnloadCallback, cbInfo);
 		}
 		else
 		{
@@ -843,7 +805,7 @@ AkPlayingID FAkAudioDevice::PostEvent(
 	{
 		// PostEvent must be bound to a game object. Passing DUMMY_GAMEOBJ as default game object.
 		UAkComponent * pComponent = (UAkComponent*) DUMMY_GAMEOBJ;
-		if (in_pActor)
+		if (in_pActor && !in_pActor->IsActorBeingDestroyed() && !in_pActor->IsPendingKill())
 		{
 			pComponent = GetAkComponent(in_pActor->GetRootComponent(), FName(), NULL, EAttachLocation::KeepRelativeOffset);
 			if (pComponent && pComponent != (UAkComponent*)DUMMY_GAMEOBJ)
@@ -1121,7 +1083,11 @@ UAkComponent* FAkAudioDevice::SpawnAkComponentAtLocation( class UAkAudioEvent* i
 
 		if(AutoPost)
 		{
-			AkComponent->PostAssociatedAkEvent();
+			if (AkComponent->PostAssociatedAkEvent() == AK_INVALID_PLAYING_ID)
+			{
+				AkComponent->ConditionalBeginDestroy();
+				AkComponent = NULL;
+			}
 		}
 	}
 
@@ -1327,8 +1293,13 @@ AKRESULT FAkAudioDevice::SetGameObjectOutputBusVolume(
  */
 FAkAudioDevice * FAkAudioDevice::Get()
 {
-	FAkAudioModule& AkAudio = FModuleManager::LoadModuleChecked<FAkAudioModule>(TEXT("AkAudio"));
-	return AkAudio.IsAvailable() ? AkAudio.GetAkAudioDevice() : NULL;
+	static FName AkAudioName = TEXT("AkAudio");
+	if (m_EngineExiting && !FModuleManager::Get().IsModuleLoaded(AkAudioName))
+	{
+		return nullptr;
+	}
+	FAkAudioModule* AkAudio = FModuleManager::LoadModulePtr<FAkAudioModule>(AkAudioName);
+	return AkAudio ? AkAudio->GetAkAudioDevice() : nullptr;
 }
 
 /**
@@ -1840,8 +1811,6 @@ bool FAkAudioDevice::EnsureInitialized()
 
 void FAkAudioDevice::SetBankDirectory()
 {
-#ifdef AK_USE_UNREAL_IO
-
 	FString BasePath = FPaths::Combine(*FPaths::GameContentDir(), TEXT("WwiseAudio"));
 	
 	#if defined AK_WIN
@@ -1861,32 +1830,6 @@ void FAkAudioDevice::SetBankDirectory()
     #else
 		#error "AkAudio integration is unsupported for this platform"
 	#endif
-
-
-#else
-
-	#if defined AK_WIN
-		FString BasePath = FPaths::Combine(*FPaths::GameContentDir(), TEXT("WwiseAudio"));
-		BasePath = FPaths::Combine(*BasePath, TEXT("Windows/"));
-    #elif defined AK_LINUX
-        FString BasePath = FPaths::Combine(*FPaths::GameContentDir(), TEXT("WwiseAudio"));
-        BasePath = FPaths::Combine(*BasePath, TEXT("Linux/"));
-    #elif defined AK_MAC_OS_X
-        FString BasePath = FPaths::Combine(*FPaths::GameContentDir(), TEXT("WwiseAudio"));
-        BasePath = FPaths::Combine(*BasePath, TEXT("Mac/"));
-	#elif defined AK_PS4
-		#error "Must define here the base path to use when bypassing Unreal I/O"
-	#elif defined AK_XBOXONE
-		#error "Must define here the base path to use when bypassing Unreal I/O"
-	#elif defined AK_ANDROID
-		#error "Must define here the base path to use when bypassing Unreal I/O"
-    #elif defined AK_IOS
-        #error "Must define here the base path to use when bypassing Unreal I/O"
-	#else
-		#error "AkAudio integration is unsupported for this platform"
-	#endif
-
-#endif
 
 	UE_LOG(LogInit, Log, TEXT("Audiokinetic Audio Device setting bank directory to %s."), *BasePath);
 

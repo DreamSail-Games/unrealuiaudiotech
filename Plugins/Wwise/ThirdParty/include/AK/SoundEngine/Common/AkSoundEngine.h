@@ -1,8 +1,29 @@
-//////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2006 Audiokinetic Inc. / All Rights Reserved
-//
-//////////////////////////////////////////////////////////////////////
+/*******************************************************************************
+The content of this file includes portions of the AUDIOKINETIC Wwise Technology
+released in source code form as part of the SDK installer package.
+
+Commercial License Usage
+
+Licensees holding valid commercial licenses to the AUDIOKINETIC Wwise Technology
+may use this file in accordance with the end user license agreement provided 
+with the software or, alternatively, in accordance with the terms contained in a
+written agreement between you and Audiokinetic Inc.
+
+Apache License Usage
+
+Alternatively, this file may be used under the Apache License, Version 2.0 (the 
+"Apache License"); you may not use this file except in compliance with the 
+Apache License. You may obtain a copy of the Apache License at 
+http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
+the specific language governing permissions and limitations under the License.
+
+  Version: v2016.2.0  Build: 5972
+  Copyright (c) 2006-2016 Audiokinetic Inc.
+*******************************************************************************/
 
 // AkSoundEngine.h
 
@@ -139,7 +160,7 @@ struct AkInitSettings
 	AkUInt32			uMaxHardwareTimeoutMs;		///< Amount of time to wait for HW devices to trigger an audio interrupt. If there is no interrupt after that time, the sound engine will revert to  silent mode and continue operating until the HW finally comes back. Default value: 2000 (2 seconds)
 
 	bool				bUseSoundBankMgrThread;		///< Use a separate thread for loading sound banks. Allows asynchronous operations.
-	bool				bUseLEngineThread;			///< Use a separate thread for processing audio. If set to false, audio processing will occur in RenderAudio(). Ignored on 3DS, Vita, Wii-U, and Xbox 360 platforms. \ref goingfurther_eventmgrthread
+	bool				bUseLEngineThread;			///< Use a separate thread for processing audio. If set to false, audio processing will occur in RenderAudio(). Ignored on Vita, Wii U, and Xbox 360 platforms. \ref goingfurther_eventmgrthread
 
 	AkBackgroundMusicChangeCallbackFunc BGMCallback; ///< Application-defined audio source change event callback function.
 	void*				BGMCallbackCookie;			///< Application-defined user data for the audio source change event callback function.
@@ -172,6 +193,9 @@ struct AkSourcePosition
 /// Audiokinetic namespace
 namespace AK
 {
+	class IReadBytes;
+	class IWriteBytes;
+
 	/// Audiokinetic sound engine namespace
 	/// \remarks The functions in this namespace are thread-safe, unless stated otherwise.
 	namespace SoundEngine
@@ -274,7 +298,7 @@ namespace AK
 		/// configuration is determined by the sound engine, based on the platform, output type and
 		/// platform settings (for e.g. system menu or control panel option). 
 		/// 
-		/// \warning Call this function only after the sound engine has been properly initialized.
+		/// \warning Call this function only after the sound engine has been properly initialized. If you are initializing the sound engine with AkInitSettings::bUseLEngineThread to false, it is required to call RenderAudio() at least once before calling this function to complete the sound engine initialization.
 		/// \return The output configuration. An empty AkChannelConfig (!AkChannelConfig::IsValid()) if device does not exist.
 		/// \sa 
 		/// - AkSpeakerConfig.h
@@ -682,7 +706,7 @@ namespace AK
 
 
 		/// Executes a number of MIDI events on all nodes that are referenced in the specified event in an action of type play.
-		/// Each MIDI event will be posted in AkMIDIPost::uOffset samples from the start of the current frame.  To duration of
+		/// Each MIDI event will be posted in AkMIDIPost::uOffset samples from the start of the current frame.  The duration of
 		/// a sample can be determined from the sound engine's audio settings, via a call to AK::SoundEngine::GetAudioSettings.
 		/// \sa
 		/// - AK::SoundEngine::GetAudioSettings
@@ -3343,7 +3367,7 @@ namespace AK
 			);
 
 		/// Set a game object's obstruction and occlusion levels.
-		/// This method is used to affect how an object should be heard by a specific listener.
+		/// This function is used to affect how an object should be heard by a specific listener.
 		/// \sa 
 		/// - \ref soundengine_obsocc
 		/// - \ref soundengine_environments
@@ -3353,6 +3377,30 @@ namespace AK
 			AkUInt32 in_uListener,				///< Listener index (0: first listener, 7: 8th listener)
 			AkReal32 in_fObstructionLevel,		///< ObstructionLevel: [0.0f..1.0f]
 			AkReal32 in_fOcclusionLevel			///< OcclusionLevel: [0.0f..1.0f]
+			);
+
+		/// Save the playback history of container structures.
+		/// This function will write history data for all currently loaded containers and instantiated game
+		/// objects (for example, current position in Sequence containers and previously played elements in
+		/// Random containers). 
+		/// \remarks
+		/// This function acquires the main audio lock, and may block the caller for several milliseconds.
+		/// \sa 
+		/// - AK::SoundEngine::SetContainerHistory()
+		AK_EXTERNAPIFUNC( AKRESULT, GetContainerHistory)(
+			AK::IWriteBytes * in_pBytes			///< Pointer to IWriteBytes interface used to save the history.
+			);
+
+		/// Restore the playback history of container structures.
+		/// This function will read history data from the passed-in stream reader interface, and apply it to all
+		/// currently loaded containers and instantiated game objects. Game objects are matched by
+		/// ID. History for unloaded structures and unknown game objects will be skipped.
+		/// \remarks
+		/// This function acquires the main audio lock, and may block the caller for several milliseconds.
+		/// \sa 
+		/// - AK::SoundEngine::GetContainerHistory()
+		AK_EXTERNAPIFUNC(AKRESULT, SetContainerHistory)(
+			AK::IReadBytes * in_pBytes 			///< Pointer to IReadBytes interface used to load the history.
 			);
 
 		//@}
@@ -3484,6 +3532,11 @@ namespace AK
 		/// - XBoxOne: Use when the game is back to Full resources (see ResourceAvailability in XboxOne documentation).
 		/// - WiiU: Do not use. See \c SetProcessMode().
 		AK_EXTERNAPIFUNC( AKRESULT, WakeupFromSuspend )(); 
+
+		/// Obtain the current audio output buffer tick. This corresponds to the number of buffers produced by
+		/// the sound engine since initialization. 
+		/// \return Tick count.
+		AK_EXTERNAPIFUNC(AkUInt32, GetBufferTick)();
 	}
 }
 
