@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="120">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Alec Galambos\Documents\unrealuiaudiotech\Content\WwiseAudio\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3552652830" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\The_real_deal</ObjectPath>
+			<ShortName>The_real_deal</ShortName>
+			<Path>The_real_deal.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2291764829" Name="LoopingAudio" ObjectPath="\Events\Default Work Unit\LoopingAudio"/>
+				<Event Id="3050088729" Name="RandomButtonSound" ObjectPath="\Events\Default Work Unit\RandomButtonSound"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="45696761" Language="SFX">
+					<ShortName>bb_sfx_bombexplosion_grabbag_1_v3.wav</ShortName>
+					<Path>SFX\bb_sfx_bombexplosion_grabbag_1_v3_67E17904.wem</Path>
+				</File>
+				<File Id="345028633" Language="SFX">
+					<ShortName>bb_sfx_matchresults_firstplace.wav</ShortName>
+					<Path>SFX\bb_sfx_matchresults_firstplace_67E17904.wem</Path>
+				</File>
+				<File Id="376386923" Language="SFX">
+					<ShortName>mylittlecampfire_sfx_mushroom_pickup.wav</ShortName>
+					<Path>SFX\mylittlecampfire_sfx_mushroom_pickup_67E17904.wem</Path>
+				</File>
+				<File Id="419363590" Language="SFX">
+					<ShortName>dm_sfx_riot_pickup.wav</ShortName>
+					<Path>SFX\dm_sfx_riot_pickup_67E17904.wem</Path>
+				</File>
+				<File Id="427960718" Language="SFX">
+					<ShortName>Kilowaltz.wav</ShortName>
+					<Path>SFX\Kilowaltz_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="611640261" Language="SFX">
+					<ShortName>bb_sfx_botsounds_dropjaw_hello_grabbag_3_v1.wav</ShortName>
+					<Path>SFX\bb_sfx_botsounds_dropjaw_hello_grabbag_3_v1_67E17904.wem</Path>
+				</File>
+				<File Id="762659287" Language="SFX">
+					<ShortName>firefly_sfx_cough_2.wav</ShortName>
+					<Path>SFX\firefly_sfx_cough_2_67E17904.wem</Path>
+				</File>
+				<File Id="796225973" Language="SFX">
+					<ShortName>bb_sfx_botsounds_death_generic_LASER_grabbag_1_v1.wav</ShortName>
+					<Path>SFX\bb_sfx_botsounds_death_generic_LASER_grabbag_1_v1_67E17904.wem</Path>
+				</File>
+				<File Id="882449113" Language="SFX">
+					<ShortName>bb_sfx_botsounds_N31L_death_grabbag_3_v1.wav</ShortName>
+					<Path>SFX\bb_sfx_botsounds_N31L_death_grabbag_3_v1_67E17904.wem</Path>
+				</File>
+				<File Id="923776963" Language="SFX">
+					<ShortName>mylittlecampfire_sfx_voice_sad_good_2.wav</ShortName>
+					<Path>SFX\mylittlecampfire_sfx_voice_sad_good_2_67E17904.wem</Path>
+				</File>
+				<File Id="939329176" Language="SFX">
+					<ShortName>bb_sfx_timebomb_bomb_10thru6secs_warning_grabbag_2_v1.wav</ShortName>
+					<Path>SFX\bb_sfx_timebomb_bomb_10thru6secs_warning_grabbag_2_v1_67E17904.wem</Path>
+				</File>
+				<File Id="965438625" Language="SFX">
+					<ShortName>sfx_firefly_firespawn_grabbag_2.wav</ShortName>
+					<Path>SFX\sfx_firefly_firespawn_grabbag_2_67E17904.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

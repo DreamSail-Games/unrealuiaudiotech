@@ -1,0 +1,18 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2291764829	LoopingAudio			\Default Work Unit\LoopingAudio	
+	3050088729	RandomButtonSound			\Default Work Unit\RandomButtonSound	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	45696761	bb_sfx_bombexplosion_grabbag_1_v3	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_bombexplosion_grabbag_1_v3_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_bombexplosion_grabbag_1_v3		529272
+	345028633	bb_sfx_matchresults_firstplace	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_matchresults_firstplace_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_matchresults_firstplace		405528
+	376386923	mylittlecampfire_sfx_mushroom_pickup	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\mylittlecampfire_sfx_mushroom_pickup_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\mylittlecampfire_sfx_mushroom_pickup		261884
+	419363590	dm_sfx_riot_pickup	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\dm_sfx_riot_pickup_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\dm_sfx_riot_pickup		261232
+	427960718	Kilowaltz	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\Kilowaltz_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Kilowaltz		31227876
+	611640261	bb_sfx_botsounds_dropjaw_hello_grabbag_3_v1	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_botsounds_dropjaw_hello_grabbag_3_v1_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_botsounds_dropjaw_hello_grabbag_3_v1		354460
+	762659287	firefly_sfx_cough_2	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\firefly_sfx_cough_2_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\firefly_sfx_cough_2		510688
+	796225973	bb_sfx_botsounds_death_generic_LASER_grabbag_1_v1	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_botsounds_death_generic_LASER_grabbag_1_v1_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_botsounds_death_generic_LASER_grabbag_1_v1		201436
+	882449113	bb_sfx_botsounds_N31L_death_grabbag_3_v1	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_botsounds_N31L_death_grabbag_3_v1_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_botsounds_N31L_death_grabbag_3_v1		216428
+	923776963	mylittlecampfire_sfx_voice_sad_good_2	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\mylittlecampfire_sfx_voice_sad_good_2_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\mylittlecampfire_sfx_voice_sad_good_2		754840
+	939329176	bb_sfx_timebomb_bomb_10thru6secs_warning_grabbag_2_v1	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_timebomb_bomb_10thru6secs_warning_grabbag_2_v1_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_timebomb_bomb_10thru6secs_warning_grabbag_2_v1		215600
+	965438625	sfx_firefly_firespawn_grabbag_2	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\sfx_firefly_firespawn_grabbag_2_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\sfx_firefly_firespawn_grabbag_2		510688
+
