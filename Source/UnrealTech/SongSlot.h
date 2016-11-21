@@ -19,7 +19,7 @@ public:
 		TSubclassOf<UUserWidget> WidgetTemplate;
 
 	UPROPERTY()
-		UUserWidget* loadedSong;
+		UUserWidget* WidgetInstance;
 	UFUNCTION(BlueprintCallable, Category = "Song")
 	void GenerateSong(UPanelWidget* parentTransform, USong* loadedSong);
 
