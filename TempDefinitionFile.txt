@@ -1,2 +1,0 @@
-The_real_deal	"RandomButtonSound"
-The_real_deal	"LoopingAudio"
