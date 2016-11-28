@@ -1,9 +1,11 @@
 Event	ID	Name			Wwise Object Path	Notes
+	85412153	Ambience			\Default Work Unit\Ambience	
 	2291764829	LoopingAudio			\Default Work Unit\LoopingAudio	
 	3050088729	RandomButtonSound			\Default Work Unit\RandomButtonSound	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	45696761	bb_sfx_bombexplosion_grabbag_1_v3	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_bombexplosion_grabbag_1_v3_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_bombexplosion_grabbag_1_v3		529272
+	301487941	Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX		47144640
 	345028633	bb_sfx_matchresults_firstplace	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_matchresults_firstplace_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_matchresults_firstplace		405528
 	376386923	mylittlecampfire_sfx_mushroom_pickup	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\mylittlecampfire_sfx_mushroom_pickup_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\mylittlecampfire_sfx_mushroom_pickup		261884
 	419363590	dm_sfx_riot_pickup	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\dm_sfx_riot_pickup_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\dm_sfx_riot_pickup		261232

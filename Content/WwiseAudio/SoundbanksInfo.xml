@@ -21,6 +21,7 @@
 			<ShortName>The_real_deal</ShortName>
 			<Path>The_real_deal.bnk</Path>
 			<IncludedEvents>
+				<Event Id="85412153" Name="Ambience" ObjectPath="\Events\Default Work Unit\Ambience"/>
 				<Event Id="2291764829" Name="LoopingAudio" ObjectPath="\Events\Default Work Unit\LoopingAudio"/>
 				<Event Id="3050088729" Name="RandomButtonSound" ObjectPath="\Events\Default Work Unit\RandomButtonSound"/>
 			</IncludedEvents>
@@ -28,6 +29,10 @@
 				<File Id="45696761" Language="SFX">
 					<ShortName>bb_sfx_bombexplosion_grabbag_1_v3.wav</ShortName>
 					<Path>SFX\bb_sfx_bombexplosion_grabbag_1_v3_67E17904.wem</Path>
+				</File>
+				<File Id="301487941" Language="SFX">
+					<ShortName>Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX.wav</ShortName>
+					<Path>SFX\Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="345028633" Language="SFX">
 					<ShortName>bb_sfx_matchresults_firstplace.wav</ShortName>
