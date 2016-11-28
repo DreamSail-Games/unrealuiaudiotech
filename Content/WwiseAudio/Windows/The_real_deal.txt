@@ -3,6 +3,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	2291764829	LoopingAudio			\Default Work Unit\LoopingAudio	
 	3050088729	RandomButtonSound			\Default Work Unit\RandomButtonSound	
 
+Effect plug-ins	ID	Name	Type				Notes
+	542376973	Oculus Spatializer (Attached)	AttachableMixerInput			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	45696761	bb_sfx_bombexplosion_grabbag_1_v3	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\bb_sfx_bombexplosion_grabbag_1_v3_67E17904.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX Randomizer\bb_sfx_bombexplosion_grabbag_1_v3		529272
 	301487941	Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX	C:\Users\Alec Galambos\Documents\WwiseProjects\UnrealTech\.cache\Windows\SFX\Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Early Morning Suburban Sunrise Forest Breckinridge Park 02 ST450_ambiX		47144640

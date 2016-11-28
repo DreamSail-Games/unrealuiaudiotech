@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PluginInfo Project="UnrealTech" Platform="Windows" BasePlatform="Windows">
-	<Plugins/>
+	<Plugins>
+		<Plugin Name="Oculus Spatializer" ID="9572518" DLL="OculusSpatializerWwise"/>
+		<Plugin Name="AttachableMixerInput" ID="32837795" DLL="OculusSpatializerWwise"/>
+	</Plugins>
 </PluginInfo>
